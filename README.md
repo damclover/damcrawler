@@ -1,5 +1,3 @@
-Claro! Aqui está um `README.md` com instruções bem organizadas sobre instalação do `gau`, requisitos Python e como usar o script com Python 3:
-
 ---
 
 ## 🛠️ ParamFinder by DamClover
@@ -78,5 +76,3 @@ https://example.com/search.php?q=
 For educational and testing purposes only.
 
 ---
-
-Se quiser, posso montar o `install-gau.sh` certinho pra já adicionar ao `PATH` também. Deseja?
