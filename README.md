@@ -41,9 +41,9 @@ python3 paramfinder.py -u https://example.com/ -o params.txt
 ```
 
 #### 🔹 Filter by specific parameters:
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -p id,page
-´´´
+```
 
 #### 🔹 Show only .php files without parameters:
 ```bash
