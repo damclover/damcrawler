@@ -53,6 +53,12 @@ python3 paramfinder.py -u https://example.com/
 python3 paramfinder.py -u https://example.com/ -o params.txt
 ```
 
+- Specify the param
+```bash
+python3 paramfinder.py -u <url> [-p <param1,param2>]
+python3 paramfinder.py -u <url> -p id,page
+```
+
 - Show help:
 ```bash
 python3 paramfinder.py -h
