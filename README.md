@@ -1,6 +1,10 @@
-## 🛠️ ParamFinder by DamClover
 
-A simple Python utility that extracts unique GET parameters from `.php?` URLs using `gau`, with filters for specific params, extensions, keywords, and more.
+
+````
+## 🛠️ DamCrawler by DamClover
+
+A powerful Python utility that crawls and extracts unique GET parameters from URLs using `gau`, with support for filters like extensions, keywords, silent mode, and more.  
+It also supports extracting pages by title keywords such as `login`, `admin`, etc.
 
 ### 📦 Requirements
 
@@ -11,9 +15,10 @@ A simple Python utility that extracts unique GET parameters from `.php?` URLs us
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/paramfinder.git
-cd paramfinder
-```
+git clone https://github.com/yourusername/damcrawler.git
+cd damcrawler
+````
+
 #### 2. Install gau
 
 Run the helper script:
@@ -21,6 +26,7 @@ Run the helper script:
 ```bash
 bash install-gau.sh
 ```
+
 ⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
 
 #### 3. Install Python Requirements
@@ -29,74 +35,92 @@ bash install-gau.sh
 pip3 install -r requirements.txt
 ```
 
+---
+
 ### 🚀 Usage
 
 ```bash
-python3 paramfinder.py -u https://example.com/
+DamCrawler -u https://example.com/
 ```
 
 #### 🔹 Save output to a file:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -o params.txt
+DamCrawler -u https://example.com/ -o params.txt
 ```
 
 #### 🔹 Filter by specific parameters:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -p id,page
+DamCrawler -u https://example.com/ -p id,page
 ```
 
-#### 🔹 Show only .php files without parameters:
+#### 🔹 Show only `.php` files **without parameters**:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -np
+DamCrawler -u https://example.com/ -np
 ```
 
 #### 🔹 Filter by file extensions:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -f php,html
+DamCrawler -u https://example.com/ -f php,html
 ```
 
 #### 🔹 Search for keywords in URLs:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -kw upload,admin,files
+DamCrawler -u https://example.com/ -kw upload,admin,files
 ```
 
 #### 🔹 Silent Mode (only shows scanning message):
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -s
+DamCrawler -u https://example.com/ -s
 ```
 
-#### 🔹 Title mode:
+#### 🔹 Search by page `<title>`:
+
 ```bash
-python3 paramfinder.py -u https://example.com/ -t admin,login
+DamCrawler -u https://example.com/ -t admin,login
 ```
 
 #### 🔹 Show Help:
+
 ```bash
-python3 paramfinder.py -h
+DamCrawler -h
 ```
 
+---
+
 ### 📥 Example Output
+
 ```bash
 https://example.com/page.php?id=
 https://example.com/view.php?item=
 https://example.com/search.php?q=
 ```
 
-## 🎁 Bonus
+---
 
-Make it a global command:
+## 🎁 Bonus: Make it Global
+
+To run `DamCrawler` from anywhere:
+
 ```bash
-chmod +x paramfinder.py
-sudo cp paramfinder.py /usr/local/bin/paramfinder
+chmod +x DamCrawler
+sudo mv DamCrawler /usr/local/bin/
 ```
 
-##### Now you can use it like this:
+✅ Now you can use it like this:
+
 ```bash
-paramfinder -u https://example.com/
+DamCrawler -u https://example.com/
 ```
+
+---
 
 ## 🧑‍💻 Author
-```bash
-DamClover
+
+DamClover\
 For educational and testing purposes only.
-```
