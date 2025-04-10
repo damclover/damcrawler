@@ -1,6 +1,3 @@
-
-
-````
 ## 🛠️ DamCrawler by DamClover
 
 A powerful Python utility that crawls and extracts unique GET parameters from URLs using `gau`, with support for filters like extensions, keywords, silent mode, and more.  
@@ -17,7 +14,7 @@ It also supports extracting pages by title keywords such as `login`, `admin`, et
 ```bash
 git clone https://github.com/yourusername/damcrawler.git
 cd damcrawler
-````
+```
 
 #### 2. Install gau
 
@@ -122,5 +119,5 @@ DamCrawler -u https://example.com/
 
 ## 🧑‍💻 Author
 
-DamClover\
+DamClover  
 For educational and testing purposes only.
