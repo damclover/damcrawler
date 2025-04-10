@@ -106,7 +106,7 @@ To run `DamCrawler` from anywhere:
 
 ```bash
 chmod +x DamCrawler
-sudo mv DamCrawler /usr/local/bin/
+sudo cp DamCrawler /usr/local/bin/
 ```
 
 ✅ Now you can use it like this:
