@@ -9,7 +9,6 @@ import re
 
 def banner():
     banner = pyfiglet.figlet_format("ParamFinder", font="big")
-
     print(f"\n\n{banner}")
     print("                       by DamClover")
     print("---------------------------------------------------------------\n\n")
@@ -18,14 +17,16 @@ def banner():
 def show_help():
     print("PS.: Automation of the gau tool to find parameters possibly vulnerable to SQLi, XSS or LFI and some others, depending on your creativity.\n")
     print("Usage:")
-    print("  python3 paramfinder.py -u <url> [-o <output_file>]\n")
+    print("  python3 paramfinder.py -u <url> [-p <params>] [-o <output_file>]\n")
     print("Options:")
     print("  -u, --url       Target URL to extract parameters from")
+    print("  -p, --param     Filter by specific parameters (comma-separated, e.g. id,page)")
     print("  -o, --output    Save the found parameters to a file")
     print("  -h, --help      Show this help message\n")
     print("Examples:")
     print("  python3 paramfinder.py -u https://example.com")
     print("  python3 paramfinder.py --url https://example.com --output params.txt")
+    print("  python3 paramfinder.py -u https://example.com -p id,page")
     sys.exit(0)
 
 
@@ -35,7 +36,7 @@ def error(msg):
     sys.exit(1)
 
 
-def find_params(url, output):
+def find_params(url, output, filters):
     if not re.match(r'^https?://', url):
         error("Invalid URL. Make sure to use the correct format (http:// or https://).")
 
@@ -54,7 +55,8 @@ def find_params(url, output):
                 base, query = line.split('?', 1)
                 for param in query.split('&'):
                     key = param.split('=')[0]
-                    found_params.add(f"{base}?{key}=")
+                    if not filters or key in filters:
+                        found_params.add(f"{base}?{key}=")
             except Exception:
                 continue
 
@@ -75,6 +77,7 @@ def find_params(url, output):
 def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('-u', '--url', help='Target URL')
+    parser.add_argument('-p', '--param', help='Comma-separated list of parameters to filter')
     parser.add_argument('-o', '--output', help='Output file')
     parser.add_argument('-h', '--help', action='store_true', help='Show help')
     args = parser.parse_args()
@@ -87,7 +90,8 @@ def main():
     if not args.url:
         error("URL is required. Use -u or --url to provide it.")
 
-    find_params(args.url, args.output)
+    filters = args.param.split(',') if args.param else None
+    find_params(args.url, args.output, filters)
 
 
 if __name__ == '__main__':
