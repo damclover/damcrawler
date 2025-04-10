@@ -13,20 +13,24 @@ A simple Python utility that extracts unique GET parameters from `.php?` URLs us
 ```bash
 git clone https://github.com/yourusername/paramfinder.git
 cd paramfinder
-
-2. Install gau
+```
+#### 2. Install gau
 
 Run the helper script:
 
+```bash
 bash install-gau.sh
+```
 
     ⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
 
-3. Install Python Requirements
+#### 3. Install Python Requirements
 
+```bash
 pip3 install -r requirements.txt
+```
 
-🚀 Usage
+####🚀 Usage
 
 python3 paramfinder.py -u https://example.com/
 
