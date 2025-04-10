@@ -51,9 +51,9 @@ python3 paramfinder.py -u https://example.com/ -np
 ```
 
 #### 🔹 Filter by file extensions:
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -f php,html
-´´´
+```
 
 #### 🔹 Search for keywords in URLs:
 ```bash
