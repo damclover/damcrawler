@@ -1,5 +1,3 @@
----
-
 ```markdown
 ## 🛠️ ParamFinder by DamClover
 
@@ -112,5 +110,3 @@ paramfinder -u https://example.com/
 
 **DamClover**  
 For educational and testing purposes only.
-
----
