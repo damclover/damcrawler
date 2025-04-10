@@ -9,7 +9,7 @@ import requests
 
 
 def banner():
-    banner = pyfiglet.figlet_format("ParamFinder", font="big")
+    banner = pyfiglet.figlet_format("DamCrawler", font="big")
     print('\n\n---------------------------------------------------------------')
     print(f"{banner}")
     print("                       by DamClover")
