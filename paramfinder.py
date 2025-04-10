@@ -16,6 +16,7 @@ def banner():
 
 
 def show_help():
+    print("PS.: Automation of the gau tool to find parameters possibly vulnerable to SQLi, XSS or LFI and some others, depending on your creativity.\n")
     print("Usage:")
     print("  python3 paramfinder.py -u <url> [-o <output_file>]\n")
     print("Options:")
