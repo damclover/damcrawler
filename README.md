@@ -65,6 +65,11 @@ python3 paramfinder.py -u https://example.com/ -kw upload,admin,files
 python3 paramfinder.py -u https://example.com/ -s
 ```
 
+#### 🔹 Title mode:
+```bash
+python3 paramfinder.py -u https://example.com/ -t admin,login
+```
+
 #### 🔹 Show Help:
 ```bash
 python3 paramfinder.py -h
