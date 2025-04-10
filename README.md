@@ -36,9 +36,9 @@ python3 paramfinder.py -u https://example.com/
 ```
 
 🔹 Save output to a file:
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -o params.txt
-´´´
+```
 
 🔹 Filter by specific parameters:
 ´´´bash
@@ -46,9 +46,9 @@ python3 paramfinder.py -u https://example.com/ -p id,page
 ´´´
 
 🔹 Show only .php files without parameters:
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -np
-´´´
+```
 
 🔹 Filter by file extensions:
 ´´´bash
@@ -56,42 +56,42 @@ python3 paramfinder.py -u https://example.com/ -f php,html
 ´´´
 
 🔹 Search for keywords in URLs:
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -kw upload,admin,files
-´´´
+```
 
 🔹 Silent Mode (only shows scanning message):
-´´´bash
+```bash
 python3 paramfinder.py -u https://example.com/ -s
-´´´
+```
 
 🔹 Show Help:
-´´´bash
+```bash
 python3 paramfinder.py -h
-´´´
+```
 
 ### 📥 Example Output
-´´´bash
+```bash
 https://example.com/page.php?id=
 https://example.com/view.php?item=
 https://example.com/search.php?q=
-´´´
+```
 
 ## 🎁 Bonus
 
 Make it a global command:
-´´´bash
+```bash
 chmod +x paramfinder.py
 sudo cp paramfinder.py /usr/local/bin/paramfinder
-´´´
+```
 
 ##### Now you can use it like this:
-´´´bash
+```bash
 paramfinder -u https://example.com/
-´´´
+```
 
 ##🧑‍💻 Author
-´´´bash
+```bash
 DamClover
 For educational and testing purposes only.
-´´´
+```
