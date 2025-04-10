@@ -1,0 +1,5 @@
+pyfiglet
+argparse
+subprocess
+sys
+re
