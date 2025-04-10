@@ -74,6 +74,13 @@ https://example.com/view.php?item=
 https://example.com/search.php?q=
 ```
 
+### Bonus!!!
+- To transform it into a global tool, being executed from anywhere
+```bash
+chmod +x paramfinder.py
+sudo cp paramfinder.py /usr/local/bin/paramfinder
+```
+
 ---
 
 ### 🧑‍💻 Author
