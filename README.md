@@ -21,8 +21,7 @@ Run the helper script:
 ```bash
 bash install-gau.sh
 ```
-
-    ⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
+⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
 
 #### 3. Install Python Requirements
 
