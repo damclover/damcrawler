@@ -1,5 +1,3 @@
-✅ Versão Corrigida (sem erro de YAML):
-
 ## 🛠️ ParamFinder by DamClover
 
 A simple Python utility that extracts unique GET parameters from `.php?` URLs using `gau`, with filters for specific params, extensions, keywords, and more.
