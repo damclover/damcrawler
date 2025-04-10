@@ -35,37 +35,37 @@ pip3 install -r requirements.txt
 python3 paramfinder.py -u https://example.com/
 ```
 
-🔹 Save output to a file:
+#### 🔹 Save output to a file:
 ```bash
 python3 paramfinder.py -u https://example.com/ -o params.txt
 ```
 
-🔹 Filter by specific parameters:
+#### 🔹 Filter by specific parameters:
 ´´´bash
 python3 paramfinder.py -u https://example.com/ -p id,page
 ´´´
 
-🔹 Show only .php files without parameters:
+#### 🔹 Show only .php files without parameters:
 ```bash
 python3 paramfinder.py -u https://example.com/ -np
 ```
 
-🔹 Filter by file extensions:
+#### 🔹 Filter by file extensions:
 ´´´bash
 python3 paramfinder.py -u https://example.com/ -f php,html
 ´´´
 
-🔹 Search for keywords in URLs:
+#### 🔹 Search for keywords in URLs:
 ```bash
 python3 paramfinder.py -u https://example.com/ -kw upload,admin,files
 ```
 
-🔹 Silent Mode (only shows scanning message):
+#### 🔹 Silent Mode (only shows scanning message):
 ```bash
 python3 paramfinder.py -u https://example.com/ -s
 ```
 
-🔹 Show Help:
+#### 🔹 Show Help:
 ```bash
 python3 paramfinder.py -h
 ```
@@ -90,7 +90,7 @@ sudo cp paramfinder.py /usr/local/bin/paramfinder
 paramfinder -u https://example.com/
 ```
 
-##🧑‍💻 Author
+## 🧑‍💻 Author
 ```bash
 DamClover
 For educational and testing purposes only.
