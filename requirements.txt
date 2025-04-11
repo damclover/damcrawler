@@ -1,6 +1,8 @@
-requests
 pyfiglet
 argparse
 subprocess
 sys
 re
+requests
+threading
+os
