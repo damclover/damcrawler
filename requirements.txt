@@ -1,3 +1,4 @@
+requests
 pyfiglet
 argparse
 subprocess
