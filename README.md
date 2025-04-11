@@ -10,10 +10,12 @@ It also supports extracting pages by title keywords such as `login`, `admin`, et
 
 ### 🔧 Installation
 
-#### 1. Clone the Repository
+#### 1. Clone the Repository and make work in global
 ```bash
-git clone https://github.com/yourusername/damcrawler.git
+git clone https://github.com/yourusername/damcrawler
 cd damcrawler
+chmod +x damcrawler.py
+sudo cp damcrawler.py /usr/local/bin/damcrawler
 ```
 
 #### 2. Install gau
@@ -46,43 +48,13 @@ DamCrawler -u https://example.com/
 DamCrawler -u https://example.com/ -o params.txt
 ```
 
-#### 🔹 Filter by specific parameters:
+#### 🔹 Global use:
 
 ```bash
-DamCrawler -u https://example.com/ -p id,page
+DamCrawler -u https://example.com/ -gs
 ```
 
-#### 🔹 Show only `.php` files **without parameters**:
-
-```bash
-DamCrawler -u https://example.com/ -np
-```
-
-#### 🔹 Filter by file extensions:
-
-```bash
-DamCrawler -u https://example.com/ -f php,html
-```
-
-#### 🔹 Search for keywords in URLs:
-
-```bash
-DamCrawler -u https://example.com/ -kw upload,admin,files
-```
-
-#### 🔹 Silent Mode (only shows scanning message):
-
-```bash
-DamCrawler -u https://example.com/ -s
-```
-
-#### 🔹 Search by page `<title>`:
-
-```bash
-DamCrawler -u https://example.com/ -t admin,login
-```
-
-#### 🔹 Show Help:
+#### 🔹 Show Help for more options:
 
 ```bash
 DamCrawler -h
@@ -96,23 +68,6 @@ DamCrawler -h
 https://example.com/page.php?id=
 https://example.com/view.php?item=
 https://example.com/search.php?q=
-```
-
----
-
-## 🎁 Bonus: Make it Global
-
-To run `DamCrawler` from anywhere:
-
-```bash
-chmod +x DamCrawler
-sudo cp DamCrawler /usr/local/bin/
-```
-
-✅ Now you can use it like this:
-
-```bash
-DamCrawler -u https://example.com/
 ```
 
 ---
