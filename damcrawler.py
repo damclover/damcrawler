@@ -201,7 +201,7 @@ def main():
         error("--title (-t) cannot be used with --no-param (-np).")
 
     if args.silent:
-        print(f"\nScanning {args.url}...\n\n")
+        pass
     else:
         banner()
         show_inputs(args.url, filters, file_filter, keywords, args.no_param, args.generic, titles)
