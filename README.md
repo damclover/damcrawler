@@ -10,20 +10,18 @@ It also supports extracting pages by title keywords such as `login`, `admin`, et
 
 ### 🔧 Installation
 
-#### 1. Clone the Repository and make work in global
+#### 1. Clone the Repository
 ```bash
 git clone https://github.com/yourusername/damcrawler
 cd damcrawler
-chmod +x damcrawler.py
-sudo cp damcrawler.py /usr/local/bin/damcrawler
 ```
 
-#### 2. Install gau
+#### 2. Install gau and /usr/local/bin/
 
-Run the helper script:
+Run the installer script for gau and put the damcrawler global:
 
 ```bash
-bash install-gau.sh
+bash install.sh
 ```
 
 ⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
