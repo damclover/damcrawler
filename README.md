@@ -68,6 +68,12 @@ https://example.com/search.php?q=
 ```
 
 ---
+## Next Att.
+```bash
+damcrawler -u https://site.com -xss
+```
+
+---
 
 ## 🧑‍💻 Author
 
