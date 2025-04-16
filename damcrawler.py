@@ -96,7 +96,6 @@ def find_params(url, output, filters, no_param, file_filter, keywords, generic, 
                     matched = True
 
         elif generic and '?' in line and '=' in line:
-            # Adicionar filtro para excluir links com .php quando usar -g
             if '.php' not in line.lower() and re.search(r'[?&](q|s|search|query|keyword|term)=', line, re.IGNORECASE):
                 matched = True
 
@@ -129,7 +128,6 @@ def find_params(url, output, filters, no_param, file_filter, keywords, generic, 
 
         if matched and not filters:
             if unique:
-                # Tenta pegar o primeiro parâmetro da URL
                 if '?' in line and '=' in line:
                     try:
                         _, query = line.split('?', 1)
@@ -168,8 +166,7 @@ def main():
     parser.add_argument('-s', '--silent', action='store_true', help='Silent mode')
     parser.add_argument('-h', '--help', action='store_true', help='Show help')
 
-    # Primeiro validar todos os argumentos
-    args = sys.argv[1:]  # Ignorar o nome do script
+    args = sys.argv[1:]
     valid_opts = []
     for action in parser._actions:
         if action.option_strings:
@@ -179,30 +176,24 @@ def main():
     while i < len(args):
         arg = args[i]
         
-        # Verificar se é um argumento válido
         if arg in valid_opts:
-            # Pular o valor do argumento se necessário
-            if not arg.startswith('--') and len(arg) == 2:  # Argumento curto (-x)
+            if not arg.startswith('--') and len(arg) == 2: 
                 if i+1 < len(args) and not args[i+1].startswith('-'):
                     i += 1
             i += 1
             continue
             
-        # Bloqueio explícito para -gs/--gs
         if arg in ('-gs', '--gs'):
             banner()
             error("Invalid argument: -gs/--gs is not a valid option")
             
-        # Verificar se é um valor (não um argumento)
         if not arg.startswith('-'):
             i += 1
             continue
             
-        # Argumento inválido encontrado
         banner()
         error(f"Invalid argument: {arg} is not a valid option")
 
-    # Agora parsear os argumentos válidos
     known_args = parser.parse_args()
 
     if known_args.help:
@@ -217,7 +208,6 @@ def main():
     file_filter = known_args.file.split(',') if known_args.file else None
     keywords = known_args.key_words.split(',') if known_args.key_words else None
 
-    # Argument validation
     active_filters = sum([
         bool(known_args.param),
         bool(known_args.file),
