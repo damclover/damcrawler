@@ -1,29 +1,30 @@
 ## 🛠️ DamCrawler by DamClover
 
-A powerful Python utility that crawls and extracts unique GET parameters from URLs using `gau`, with support for filters like extensions, keywords, silent mode, directory finder, and anothers.  
+A powerful Python utility that crawls and extracts unique GET parameters from URLs using `gau` and `katana`, with support for filters like extensions, keywords, silent mode, directory finder, and anothers.  
 
 ### 📦 Requirements
 
 - **Python 3.6+**
-- **Go (for `gau`)**
+- **Go (for `gau` and `katana`)**
 
 ### 🔧 Installation
 
 #### 1. Clone the Repository
 ```bash
-git clone https://github.com/yourusername/damcrawler
+git clone https://github.com/damclover/damcrawler
 cd damcrawler
 ```
 
-#### 2. Install gau and /usr/local/bin/
+#### 2. Install gau and katana 
 
 Run the installer script for gau and put the damcrawler global:
 
 ```bash
-bash install.sh
+sudo chmod +x install.sh
+./install.sh
 ```
 
-⚠️ This script installs gau via Go and adds it to your PATH. Make sure Go is installed.
+⚠️ This script installs gau and katana via Go and adds it to your PATH. Make sure Go is installed.
 
 #### 3. Install Python Requirements
 
@@ -48,8 +49,9 @@ DamCrawler -u https://example.com/ -o params.txt
 #### 🔹 Global use:
 
 ```bash
-DamCrawler -u https://example.com/ -gs
+DamCrawler -u https://example.com/ -fc
 ```
+⚠️ This script parameter will extract all possible URLs from the target, possibly revealing hidden directories or files.
 
 #### 🔹 Show Help for more options:
 
@@ -68,10 +70,9 @@ https://example.com/search.php?q=
 ```
 
 ---
-## Next Att.
-```bash
-damcrawler -u https://site.com -xss
-```
+# Att
+* Added a variety of payloads and wordlists
+* Automation of the katana tool
 
 ---
 

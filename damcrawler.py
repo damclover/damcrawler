@@ -5,8 +5,6 @@ import argparse
 import subprocess
 import sys
 import re
-import requests
-
 
 def banner():
     banner = pyfiglet.figlet_format("DamCrawler", font="big")
@@ -15,9 +13,8 @@ def banner():
     print("                       by DamClover")
     print("---------------------------------------------------------------\n\n")
 
-
 def show_help():
-    print("PS.: Automation of the gau tool to find parameters possibly vulnerable to SQLi, XSS or LFI and some others, depending on your creativity.\n")
+    print("PS.: Automation of the gau and katana tool to find parameters possibly vulnerable to SQLi, XSS or LFI and some others, depending on your creativity.\n")
     print("Usage:")
     print("  python3 DamCrawler.py -u <url> [options]\n")
     print("Options:")
@@ -29,25 +26,15 @@ def show_help():
     print("  -kw, --key-words  Search for keywords inside the URLs (comma-separated, e.g. upload,files,admin)")
     print("  -g, --generic     Search for generic parameters like ?q=, ?search=, ?s= etc")
     print("  -un, --unique     Show only one URL per unique parameter")
+    print("  -fc, --full-crawl Run a full scan using all options combined")
     print("  -s, --silent      Silent mode: only shows scanning message")
     print("  -h, --help        Show this help message\n")
-    print("Examples:")
-    print("  python3 DamCrawler.py -u https://example.com")
-    print("  python3 DamCrawler.py -u https://example.com -p id,page")
-    print("  python3 DamCrawler.py -u https://example.com -np")
-    print("  python3 DamCrawler.py -u https://example.com -f php,html")
-    print("  python3 DamCrawler.py -u https://example.com -kw upload,files")
-    print("  python3 DamCrawler.py -u https://example.com -g")
-    print("  python3 DamCrawler.py -u https://example.com -un")
-    print("  python3 DamCrawler.py -u https://example.com -s")
     sys.exit(0)
-
 
 def error(msg):
     print(f"\n[ERROR] {msg}")
     print("Use -h or --help to see usage instructions.\n")
     sys.exit(1)
-
 
 def show_inputs(url, filters, file_filter, keywords, no_param, generic, unique):
     print(f"Target: {url}")
@@ -64,7 +51,6 @@ def show_inputs(url, filters, file_filter, keywords, no_param, generic, unique):
     if no_param:
         print("Only .php files without parameters")
     print("\n")
-
 
 def find_params(url, output, filters, no_param, file_filter, keywords, generic, unique):
     if not re.match(r'^https?://', url):
@@ -152,10 +138,12 @@ def find_params(url, output, filters, no_param, file_filter, keywords, generic, 
         for item in sorted_output:
             print(item)
 
+    return sorted_output
 
 def main():
     parser = argparse.ArgumentParser(add_help=False)
     parser.add_argument('-u', '--url', help='Target URL')
+    parser.add_argument('-fc', '--full-crawl', action='store_true', help='Full scanning on target')
     parser.add_argument('-p', '--param', help='Comma-separated list of parameters to filter')
     parser.add_argument('-o', '--output', help='Output file')
     parser.add_argument('-np', '--no-param', action='store_true', help='Only show .php files without parameters')
@@ -171,26 +159,25 @@ def main():
     for action in parser._actions:
         if action.option_strings:
             valid_opts.extend(action.option_strings)
-    
+
     i = 0
     while i < len(args):
         arg = args[i]
-        
         if arg in valid_opts:
-            if not arg.startswith('--') and len(arg) == 2: 
+            if not arg.startswith('--') and len(arg) == 2:
                 if i+1 < len(args) and not args[i+1].startswith('-'):
                     i += 1
             i += 1
             continue
-            
+
         if arg in ('-gs', '--gs'):
             banner()
             error("Invalid argument: -gs/--gs is not a valid option")
-            
+
         if not arg.startswith('-'):
             i += 1
             continue
-            
+
         banner()
         error(f"Invalid argument: {arg} is not a valid option")
 
@@ -204,6 +191,16 @@ def main():
         banner()
         error("URL is required. Use -u or --url to provide it.")
 
+    if known_args.full_crawl:
+        command = ['katana', '-u', known_args.url, '-silent']
+        if known_args.output:
+            command += ['-o', known_args.output]
+        try:
+            subprocess.run(command, check=True)
+        except subprocess.CalledProcessError as e:
+            error(f"Erro ao executar Katana: {e}")
+        sys.exit(0)
+
     filters = known_args.param.split(',') if known_args.param else None
     file_filter = known_args.file.split(',') if known_args.file else None
     keywords = known_args.key_words.split(',') if known_args.key_words else None
@@ -215,22 +212,23 @@ def main():
         bool(known_args.generic)
     ])
 
-    if known_args.no_param and active_filters > 0:
+    if known_args.no_param and active_filters > 0 and not known_args.full_crawl:
         banner()
         error("--no-param (-np) cannot be used with --param (-p), --file (-f), --key-words (-kw) or --generic (-g).")
 
-    if active_filters > 1:
+    if active_filters > 1 and not known_args.full_crawl:
         banner()
         error("Use only one of: --param (-p), --file (-f), --key-words (-kw), or --generic (-g).")
 
-    if known_args.silent:
-        pass
-    else:
+    if known_args.full_crawl and (known_args.param or known_args.file or known_args.key_words or known_args.generic or known_args.no_param):
+        banner()
+        error("The -fc option cannot be used with any other parameters.")
+        
+    if not known_args.silent:
         banner()
         show_inputs(known_args.url, filters, file_filter, keywords, known_args.no_param, known_args.generic, known_args.unique)
 
     find_params(known_args.url, known_args.output, filters, known_args.no_param, file_filter, keywords, known_args.generic, known_args.unique)
-
 
 if __name__ == '__main__':
     main()
