@@ -36,7 +36,7 @@ def error(msg):
     print("Use -h or --help to see usage instructions.\n")
     sys.exit(1)
 
-def show_inputs(url, filters, file_filter, keywords, no_param, generic, unique):
+def show_inputs(url, filters, file_filter, keywords, no_param, generic, unique, full_crawl):
     print(f"Target: {url}")
     if filters:
         print("Params:", ', '.join(filters))
@@ -50,6 +50,8 @@ def show_inputs(url, filters, file_filter, keywords, no_param, generic, unique):
         print("Unique param mode: ON")
     if no_param:
         print("Only .php files without parameters")
+    if full_crawl:
+        print("Full crawl of all URLs")
     print("\n")
 
 def find_params(url, output, filters, no_param, file_filter, keywords, generic, unique):
@@ -191,17 +193,6 @@ def main():
         banner()
         error("URL is required. Use -u or --url to provide it.")
 
-    if known_args.full_crawl:
-        banner()
-        command = ['katana', '-u', known_args.url, '-silent']
-        if known_args.output:
-            command += ['-o', known_args.output]
-        try:
-            subprocess.run(command, check=True)
-        except subprocess.CalledProcessError as e:
-            error(f"Erro ao executar Katana: {e}")
-        sys.exit(0)
-        
     if known_args.full_crawl and known_args.silent:
         command = ['katana', '-u', known_args.url, '-silent']
         if known_args.output:
@@ -211,6 +202,20 @@ def main():
         except subprocess.CalledProcessError as e:
             error(f"Erro ao executar Katana: {e}")
         sys.exit(0)
+    
+    elif known_args.full_crawl:
+        banner()
+        print(f"Target: {known_args.url}\nMethod: Full Crawl of all URLs\n")
+    
+        command = ['katana', '-u', known_args.url]
+        if known_args.output:
+            command += ['-o', known_args.output]
+        try:
+            subprocess.run(command, check=True)
+        except subprocess.CalledProcessError as e:
+            error(f"Erro ao executar Katana: {e}")
+        sys.exit(0)
+
 
     filters = known_args.param.split(',') if known_args.param else None
     file_filter = known_args.file.split(',') if known_args.file else None
@@ -237,7 +242,7 @@ def main():
         
     if not known_args.silent:
         banner()
-        show_inputs(known_args.url, filters, file_filter, keywords, known_args.no_param, known_args.generic, known_args.unique)
+        show_inputs(known_args.url, filters, file_filter, keywords, known_args.no_param, known_args.generic, known_args.unique, known_args.full_crawl)
 
     find_params(known_args.url, known_args.output, filters, known_args.no_param, file_filter, keywords, known_args.generic, known_args.unique)
 
