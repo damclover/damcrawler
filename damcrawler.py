@@ -192,6 +192,17 @@ def main():
         error("URL is required. Use -u or --url to provide it.")
 
     if known_args.full_crawl:
+        banner()
+        command = ['katana', '-u', known_args.url, '-silent']
+        if known_args.output:
+            command += ['-o', known_args.output]
+        try:
+            subprocess.run(command, check=True)
+        except subprocess.CalledProcessError as e:
+            error(f"Erro ao executar Katana: {e}")
+        sys.exit(0)
+        
+    if known_args.full_crawl and known_args.silent:
         command = ['katana', '-u', known_args.url, '-silent']
         if known_args.output:
             command += ['-o', known_args.output]
