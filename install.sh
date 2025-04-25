@@ -2,6 +2,8 @@
 
 echo -e "Enter in sudo mode to install...\n"
 
+pip install -r requirements.txt
+
 sudo apt update && sudo apt install golang -y
 
 export GOROOT=/usr/lib/go
