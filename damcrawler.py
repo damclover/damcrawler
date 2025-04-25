@@ -207,7 +207,7 @@ def main():
         banner()
         print(f"Target: {known_args.url}\nMethod: Full Crawl of all URLs\n")
     
-        command = ['katana', '-u', known_args.url]
+        command = ['katana', '-u', known_args.url, '-silent']
         if known_args.output:
             command += ['-o', known_args.output]
         try:
