@@ -3,6 +3,7 @@
 echo -e "Enter in sudo mode to install...\n"
 
 pip install -r requirements.txt --break-system-packages
+pip install pyfiglet --break-system-packages
 
 sudo apt update && sudo apt install golang -y
 
